@@ -15,7 +15,15 @@ eventListeners();
 
 // Classes
 
+class Budget {
+    constructor(budget){
+        this.budget = Number(budget);
+        this.remaining = Number(budget);
+        this.expense = []; 
+    };
+};
 
+let budget;
 
 
 // Functions 
@@ -23,11 +31,12 @@ eventListeners();
 function askBudget (){
     const budgetUser = prompt("¿Cuál es tu presupuesto?");
 
-    console.log(Number(budgetUser));
-
     // Budget data validation
 
     if ( budgetUser === "" || budgetUser <= 0 || budgetUser === null || isNaN(budgetUser) ){
         window.location.reload();
     }
+
+    budget = new Budget(budgetUser);
+    console.log(budget);
 };
