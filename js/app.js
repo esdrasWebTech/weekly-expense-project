@@ -15,14 +15,29 @@ eventListeners();
 
 // Classes
 
+class UI {
+    insertBudget(quantity){
+
+        //extract budget quantity in object
+       const {budget, remaining} = quantity;
+
+       document.querySelector('#total').textContent = budget;
+       document.querySelector('#restante').textContent = remaining;
+    }
+}
+
 class Budget {
-    constructor(budget){
-        this.budget = Number(budget);
-        this.remaining = Number(budget);
+    constructor(budgetUser){
+        this.budget = Number(budgetUser);
+        this.remaining = Number(budgetUser);
         this.expense = []; 
     };
 };
 
+// Instances
+
+
+const userInterface = new UI(); 
 let budget;
 
 
@@ -32,11 +47,12 @@ function askBudget (){
     const budgetUser = prompt("¿Cuál es tu presupuesto?");
 
     // Budget data validation
-
     if ( budgetUser === "" || budgetUser <= 0 || budgetUser === null || isNaN(budgetUser) ){
         window.location.reload();
     }
 
     budget = new Budget(budgetUser);
-    console.log(budget);
+
+    // insert HTML of the Budget
+    userInterface.insertBudget(budget);
 };
