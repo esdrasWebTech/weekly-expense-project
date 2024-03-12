@@ -8,7 +8,15 @@ function eventListeners(){
 // Get the user budget
 
 function getBudget (){
-    prompt('¿Cuál es tu presupuesto?');
+    const budget = Number(prompt('¿Cuál es tu presupuesto?'));
+
+
+    //Budget validation
+    if( budget === '' || budget === null || isNaN(budget) || budget <= 0){
+        window.location.reload();
+    }else{
+        console.log( budget );
+    }
 };
 
 export default eventListeners;
