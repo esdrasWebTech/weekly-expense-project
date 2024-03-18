@@ -1,3 +1,10 @@
+import Budget from "./classes/Budget.js";
+import UI from "./classes/Ui.js";
+
+//instances 
+
+let budgetUser;
+const insertHTML = new UI();
 
 // Loading document
 
@@ -8,14 +15,17 @@ function eventListeners(){
 // Get the user budget
 
 function getBudget (){
-    const budget = Number(prompt('¿Cuál es tu presupuesto?'));
+    const budget = prompt('¿Cuál es tu presupuesto?');
 
 
     //Budget validation
     if( budget === '' || budget === null || isNaN(budget) || budget <= 0){
         window.location.reload();
     }else{
-        console.log( budget );
+
+        //insert HTML
+        budgetUser = new Budget( budget );
+        insertHTML.createHTML( budgetUser );
     }
 };
 
