@@ -25,7 +25,7 @@ function getBudget (){
 
         //insert HTML
         budgetUser = new Budget( budget );
-        insertHTML.createHTML( budgetUser );
+        insertHTML.insertBudget( budgetUser );
     }
 };
 

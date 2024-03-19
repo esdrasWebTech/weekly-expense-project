@@ -1,7 +1,7 @@
 import { totalBudget, remainingBudget } from "../selectors.js";
 
 class  UI {
-    createHTML( budgetUser ){
+    insertBudget ( budgetUser ){
 
         //extracting values from budgetUser Object
         const { budget, remaining } = budgetUser;
