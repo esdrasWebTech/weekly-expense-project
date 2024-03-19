@@ -1,4 +1,4 @@
-import { form, expenseName, expenseAmount } from "./selectors.js";
+import { form } from "./selectors.js";
 import Budget from "./classes/Budget.js";
 import UI from "./classes/Ui.js";
 
@@ -36,18 +36,22 @@ function getBudget() {
 function addExpense(event) {
     event.preventDefault();
 
+    //selecting form fields
+    const expenseAmount = document.querySelector('input#cantidad').value;
+    const expenseName = document.querySelector('input#gasto').value;
+
     //validating form
-    if (expenseName.value === '' || expenseAmount.value === '') {
+    if (expenseName === '' || expenseAmount === '') {
 
         insertHTML.insertAlert('Ambos campos son obligatorios', 'error');
         return;
 
-    } else if (Number(expenseName.value)) {
+    } else if (Number(expenseName)) {
 
         insertHTML.insertAlert('La descripción no puede contener solo números', 'error');
         return;
 
-    } else if (expenseAmount.value <= 0 || isNaN(expenseAmount.value)) {
+    } else if (expenseAmount <= 0 || isNaN(expenseAmount)) {
 
         insertHTML.insertAlert('La cantidad insertada no es válida', 'error');
         return;
