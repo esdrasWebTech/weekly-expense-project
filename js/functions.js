@@ -37,7 +37,7 @@ function addExpense(event) {
     event.preventDefault();
 
     //selecting form fields
-    const expenseAmount = document.querySelector('input#cantidad').value;
+    const expenseAmount = Number(document.querySelector('input#cantidad').value);
     const expenseName = document.querySelector('input#gasto').value;
 
     //validating form
@@ -63,6 +63,14 @@ function addExpense(event) {
         //restarting form
         form.reset();
     }
+
+    //generating expense object
+
+    const expense = { expenseName, expenseAmount, id: Date.now() }; 
+
+    //adding expense to the budgetUser
+
+    budgetUser.newExpense( expense );
 };
 
 export default eventListeners;
