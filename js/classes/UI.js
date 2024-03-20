@@ -58,7 +58,7 @@ class  UI {
 
             const listItemSpan = document.createElement('span');
             listItemSpan.classList.add('badge', 'badge-primary', 'badge-pill');
-            listItemSpan.textContent = expenseAmount;
+            listItemSpan.innerHTML = `$${expenseAmount}`;
 
             listItem.appendChild( listItemSpan );
 
@@ -84,6 +84,11 @@ class  UI {
 
             listGroup.removeChild( listGroup.firstChild );
         }
+    }
+
+    updatingRemaining( remaining ){
+        
+        remainingBudget.textContent = remaining;
     }
 
 };
