@@ -3,3 +3,4 @@ export const remainingBudget = document.querySelector('.presupuesto span#restant
 export const mainContent = document.querySelector('.contenido.primario');
 export const form = document.querySelector('form#agregar-gasto');
 export const btnSubmit = document.querySelector('form button[type="submit"]');
+export const listGroup = document.querySelector('#gastos ul.list-group');

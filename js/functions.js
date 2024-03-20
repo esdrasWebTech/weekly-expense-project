@@ -71,6 +71,12 @@ function addExpense(event) {
     //adding expense to the budgetUser
 
     budgetUser.newExpense( expense );
+
+    //inserting HTML of the expenses in the list
+
+    const { expenses } = budgetUser;
+
+    insertHTML.newExpenseList( expenses );
 };
 
 export default eventListeners;

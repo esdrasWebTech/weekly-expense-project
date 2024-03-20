@@ -1,4 +1,4 @@
-import { totalBudget, remainingBudget, mainContent, form, btnSubmit } from "../selectors.js";
+import { totalBudget, remainingBudget, mainContent, form, btnSubmit, listGroup } from "../selectors.js";
 
 class  UI {
     insertBudget ( budgetUser ){
@@ -37,6 +37,53 @@ class  UI {
             divAlert.remove();
             btnSubmit.removeAttribute( 'disabled' );
         }, 3000 );
+    }
+
+    newExpenseList( expenses ){
+
+        //clear HTML of the list
+        this.clearHTML();
+
+        //iterate on the expense arrangement
+        expenses.forEach( expense => {
+
+            const { expenseName, expenseAmount, id} = expense;
+
+            //create expense item HTML
+
+            const listItem = document.createElement('li');
+            listItem.className = 'list-group-item d-flex justify-content-between align-items-center';
+            listItem.dataset.id = id;
+            listItem.textContent = expenseName;
+
+            const listItemSpan = document.createElement('span');
+            listItemSpan.classList.add('badge', 'badge-primary', 'badge-pill');
+            listItemSpan.textContent = expenseAmount;
+
+            listItem.appendChild( listItemSpan );
+
+            //create delete button HTML
+
+            const deleteBtn = document.createElement('button');
+            deleteBtn.className = 'btn btn-danger borrar-gasto';
+            deleteBtn.innerHTML = 'Borrar &times';
+
+            listItem.appendChild( deleteBtn );
+
+            //add expense item HTML in the list
+
+            listGroup.appendChild( listItem );
+
+        });
+
+    }
+
+    clearHTML(){
+        
+        while( listGroup.firstChild ){
+
+            listGroup.removeChild( listGroup.firstChild );
+        }
     }
 
 };
