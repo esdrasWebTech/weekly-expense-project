@@ -81,6 +81,10 @@ function addExpense(event) {
     //updating the HTML of the remaining budget
 
     insertHTML.updatingRemaining( remaining );
+
+    //check the budget and the remaining
+
+    insertHTML.checkBudget( budgetUser );
 };
 
 export default eventListeners;

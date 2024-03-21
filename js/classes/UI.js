@@ -1,4 +1,4 @@
-import { totalBudget, remainingBudget, mainContent, form, btnSubmit, listGroup } from "../selectors.js";
+import { totalBudget, remainingBudget, mainContent, form, btnSubmit, listGroup, remainingField } from "../selectors.js";
 
 class  UI {
     insertBudget ( budgetUser ){
@@ -89,6 +89,35 @@ class  UI {
     updatingRemaining( remaining ){
         
         remainingBudget.textContent = remaining;
+    }
+
+    checkBudget( budgetUser ){
+
+        const { budget, remaining } = budgetUser;
+
+        if( ( budget / 4 ) > remaining ){
+
+            remainingField.classList.remove('alert-success', 'alert-warning');
+            remainingField.classList.add('alert-danger');
+
+        }else if( ( budget / 2 ) > remaining ){
+
+            remainingField.classList.remove('alert-success');
+            remainingField.classList.add('alert-warning');
+
+        }
+
+        //budget exhausted alert
+
+        if ( remaining <= 0 ){
+
+            this.insertAlert( 'El presupuesto se ha agotado', 'error' );
+
+            setTimeout( () =>{
+
+                btnSubmit.disabled = true;
+            }, 3000)
+        }
     }
 
 };
