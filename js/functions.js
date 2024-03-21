@@ -87,4 +87,17 @@ function addExpense(event) {
     insertHTML.checkBudget( budgetUser );
 };
 
+
+//Remove expenses from the list 
+
+export function deleteExpense( id ){
+    budgetUser.deleteExpense( id );
+};
+
+//show new expense list
+
+export function updatedExpenseList( updatedExpenses ){
+    insertHTML.newExpenseList( updatedExpenses );
+}
+
 export default eventListeners;

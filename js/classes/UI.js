@@ -1,4 +1,5 @@
 import { totalBudget, remainingBudget, mainContent, form, btnSubmit, listGroup, remainingField } from "../selectors.js";
+import { deleteExpense } from "../functions.js";
 
 class  UI {
     insertBudget ( budgetUser ){
@@ -47,7 +48,7 @@ class  UI {
         //iterate on the expense arrangement
         expenses.forEach( expense => {
 
-            const { expenseName, expenseAmount, id} = expense;
+            const { expenseName, expenseAmount, id } = expense;
 
             //create expense item HTML
 
@@ -67,6 +68,11 @@ class  UI {
             const deleteBtn = document.createElement('button');
             deleteBtn.className = 'btn btn-danger borrar-gasto';
             deleteBtn.innerHTML = 'Borrar &times';
+            deleteBtn.onclick = () =>{
+
+                //getting expense id
+                deleteExpense( id );
+            };
 
             listItem.appendChild( deleteBtn );
 

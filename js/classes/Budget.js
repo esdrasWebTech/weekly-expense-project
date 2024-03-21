@@ -1,3 +1,5 @@
+import { updatedExpenseList } from "../functions.js"; 
+
 class Budget {
     constructor(budget) {
         this.budget = Number(budget);
@@ -19,6 +21,16 @@ class Budget {
         
         //updating remaining
         this.remaining = this.budget - remaining;
+    }
+
+    deleteExpense( id ){
+
+        //obtaining updated expense arrangement
+        const updatedExpenses = this.expenses.filter( ( expenseObj ) =>  expenseObj.id !== id );
+        this.expenses = updatedExpenses;
+
+        //showing new expense list
+        updatedExpenseList( this.expenses );
     }
 };
 
