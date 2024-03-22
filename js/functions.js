@@ -94,10 +94,13 @@ export function deleteExpense( id ){
     budgetUser.deleteExpense( id );
 };
 
-//show new expense list
+//show new expense list and apply reimbursement to budget
 
 export function updatedExpenseList( updatedExpenses ){
     insertHTML.newExpenseList( updatedExpenses );
-}
+    budgetUser.calculateRemaining( updatedExpenses );
+    insertHTML.insertBudget( budgetUser );
+    insertHTML.checkBudget( budgetUser );
+};
 
 export default eventListeners;

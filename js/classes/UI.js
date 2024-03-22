@@ -103,14 +103,18 @@ class  UI {
 
         if( ( budget / 4 ) > remaining ){
 
-            remainingField.classList.remove('alert-success', 'alert-warning');
+            remainingField.classList.remove('alert-success', 'alert-warning' );
             remainingField.classList.add('alert-danger');
 
         }else if( ( budget / 2 ) > remaining ){
 
-            remainingField.classList.remove('alert-success');
+            remainingField.classList.remove('alert-success', 'alert-danger' );
             remainingField.classList.add('alert-warning');
 
+        }else{
+
+            remainingField.classList.remove( 'alert-warning', 'alert-danger' );
+            remainingField.classList.add( 'alert-success' );
         }
 
         //budget exhausted alert
@@ -123,6 +127,10 @@ class  UI {
 
                 btnSubmit.disabled = true;
             }, 3000)
+            
+        }else{
+
+                btnSubmit.disabled = false;
         }
     }
 
