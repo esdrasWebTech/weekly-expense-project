@@ -1,8 +1,8 @@
 import { totalBudget, remainingBudget, mainContent, form, btnSubmit, listGroup, remainingField } from "../selectors.js";
 import { deleteExpense } from "../functions.js";
 
-class  UI {
-    insertBudget ( budgetUser ){
+class UI {
+    insertBudget(budgetUser) {
 
         //extracting values from budgetUser Object
         const { budget, remaining } = budgetUser;
@@ -12,41 +12,41 @@ class  UI {
         remainingBudget.textContent = remaining;
     }
 
-    insertAlert( message, type ){
+    insertAlert(message, type) {
 
         //create HTML Alert
-        const divAlert = document.createElement( 'div' );
-        divAlert.classList.add( 'text-center', 'alert' );
+        const divAlert = document.createElement('div');
+        divAlert.classList.add('text-center', 'alert');
         divAlert.textContent = message;
 
         // validating type Alert
-        if( type === 'error' ){
+        if (type === 'error') {
 
-            divAlert.classList.add( 'alert-danger' );
-        }else{
+            divAlert.classList.add('alert-danger');
+        } else {
 
-            divAlert.classList.add( 'alert-success' );
+            divAlert.classList.add('alert-success');
         };
 
         // adding HTML
-        mainContent.insertBefore( divAlert, form );
-        btnSubmit.setAttribute( 'disabled', '' );
+        mainContent.insertBefore(divAlert, form);
+        btnSubmit.setAttribute('disabled', '');
 
         //remove Alert
-        setTimeout( () =>{
+        setTimeout(() => {
 
             divAlert.remove();
-            btnSubmit.removeAttribute( 'disabled' );
-        }, 3000 );
+            btnSubmit.removeAttribute('disabled');
+        }, 3000);
     }
 
-    newExpenseList( expenses ){
+    newExpenseList(expenses) {
 
         //clear HTML of the list
         this.clearHTML();
 
         //iterate on the expense arrangement
-        expenses.forEach( expense => {
+        expenses.forEach(expense => {
 
             const { expenseName, expenseAmount, id } = expense;
 
@@ -61,76 +61,76 @@ class  UI {
             listItemSpan.classList.add('badge', 'badge-primary', 'badge-pill');
             listItemSpan.innerHTML = `$${expenseAmount}`;
 
-            listItem.appendChild( listItemSpan );
+            listItem.appendChild(listItemSpan);
 
             //create delete button HTML
 
             const deleteBtn = document.createElement('button');
             deleteBtn.className = 'btn btn-danger borrar-gasto';
             deleteBtn.innerHTML = 'Borrar &times';
-            deleteBtn.onclick = () =>{
+            deleteBtn.onclick = () => {
 
                 //getting expense id
-                deleteExpense( id );
+                deleteExpense(id);
             };
 
-            listItem.appendChild( deleteBtn );
+            listItem.appendChild(deleteBtn);
 
             //add expense item HTML in the list
 
-            listGroup.appendChild( listItem );
+            listGroup.appendChild(listItem);
 
         });
 
     }
 
-    clearHTML(){
-        
-        while( listGroup.firstChild ){
+    clearHTML() {
 
-            listGroup.removeChild( listGroup.firstChild );
+        while (listGroup.firstChild) {
+
+            listGroup.removeChild(listGroup.firstChild);
         }
     }
 
-    updatingRemaining( remaining ){
-        
+    updatingRemaining(remaining) {
+
         remainingBudget.textContent = remaining;
     }
 
-    checkBudget( budgetUser ){
+    checkBudget(budgetUser) {
 
         const { budget, remaining } = budgetUser;
 
-        if( ( budget / 4 ) > remaining ){
+        if ((budget / 4) > remaining) {
 
-            remainingField.classList.remove('alert-success', 'alert-warning' );
+            remainingField.classList.remove('alert-success', 'alert-warning');
             remainingField.classList.add('alert-danger');
 
-        }else if( ( budget / 2 ) > remaining ){
+        } else if ((budget / 2) > remaining) {
 
-            remainingField.classList.remove('alert-success', 'alert-danger' );
+            remainingField.classList.remove('alert-success', 'alert-danger');
             remainingField.classList.add('alert-warning');
 
-        }else{
+        } else {
 
-            remainingField.classList.remove( 'alert-warning', 'alert-danger' );
-            remainingField.classList.add( 'alert-success' );
+            remainingField.classList.remove('alert-warning', 'alert-danger');
+            remainingField.classList.add('alert-success');
         }
 
         //budget exhausted alert
 
-        if ( remaining <= 0 ){
+        if (remaining <= 0) {
 
-            this.insertAlert( 'El presupuesto se ha agotado', 'error' );
+            this.insertAlert('El presupuesto se ha agotado', 'error');
 
-            setTimeout( () =>{
+            setTimeout(() => {
 
                 btnSubmit.disabled = true;
             }, 3000)
-            
-        }else{
 
-                btnSubmit.disabled = false;
+        } else {
+
+            btnSubmit.disabled = false;
         }
     }
 
