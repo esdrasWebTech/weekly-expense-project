@@ -66,21 +66,41 @@ function addExpense(event) {
 
     //generating expense object
 
-    const expense = { expenseName, expenseAmount, id: Date.now() }; 
+    const expense = { expenseName, expenseAmount, id: Date.now() };
 
     //adding expense to the budgetUser
 
-    budgetUser.newExpense( expense );
+    budgetUser.newExpense(expense);
 
     //inserting HTML of the expenses in the list
 
     const { expenses, remaining } = budgetUser;
 
-    insertHTML.newExpenseList( expenses );
+    insertHTML.newExpenseList(expenses);
 
     //updating the HTML of the remaining budget
 
-    insertHTML.updatingRemaining( remaining );
+    insertHTML.updatingRemaining(remaining);
+
+    //check the budget and the remaining
+
+    insertHTML.checkBudget(budgetUser);
+};
+
+
+//Remove expenses from the list 
+
+export function deleteExpense(id) {
+    budgetUser.deleteExpense(id);
+};
+
+//show new expense list and apply reimbursement to budget
+
+export function updatedExpenseList(updatedExpenses) {
+    insertHTML.newExpenseList(updatedExpenses);
+    budgetUser.calculateRemaining(updatedExpenses);
+    insertHTML.insertBudget(budgetUser);
+    insertHTML.checkBudget(budgetUser);
 };
 
 export default eventListeners;
